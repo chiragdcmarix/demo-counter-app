@@ -10,7 +10,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', url: 'https://github.com/sagarkulkarni1989/demo-counter-app.git'
+                    git branch: 'main', url: 'https://github.com/chiragdcmarix/demo-counter-app.git'
                 }
             }
         }
@@ -82,7 +82,7 @@ pipeline{
                             ], 
                             credentialsId: 'nexus-auth', 
                             groupId: 'com.example', 
-                            nexusUrl: '3.111.47.12:8081', 
+                            nexusUrl: '203.109.113.163:8081', 
                             nexusVersion: 'nexus3', 
                             protocol: 'http', 
                             repository: 'maven-demo-releases', 
