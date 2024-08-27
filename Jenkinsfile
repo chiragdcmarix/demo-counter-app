@@ -10,7 +10,7 @@ pipeline {
             }
         }
 
-        stage('UNIT testing') {
+        stage('UNIT Testing') {
             steps {
                 script {
                     sh 'mvn test'
@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Integration testing') {
+        stage('Integration Testing') {
             steps {
                 script {
                     sh 'mvn verify -DskipUnitTests'
@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Maven build') {
+        stage('Maven Build') {
             steps {
                 script {
                     sh 'mvn clean install'
@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Static code analysis') {
+        stage('Static Code Analysis') {
             steps {
                 script {
                     withSonarQubeEnv('sonar-server') {
@@ -52,24 +52,21 @@ pipeline {
             }
         }
 
-        stage('upload war file on nexus') {
+        stage('Upload WAR File to Nexus') {
             steps {
                 script {
-                    nexusArtifactUploader artifacts: [
-                        [
-                            artifactId: 'springboot', 
-                            classifier: '', 
-                            file: 'target/Uber.jar', 
-                            type: 'jar'
-                        ]
-                    ], 
-                    credentialsId: 'nexus-auth', 
-                    groupId: 'com.example', 
-                    nexusUrl: '203.109.113.163:8081', 
-                    nexusVersion: 'nexus3', 
-                    protocol: 'http', 
-                    repository: 'maven-demo-releases', 
-                    version: '3.71.0-06'
+                    nexusArtifactUploader(
+                        artifacts: [
+                            [artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']
+                        ], 
+                        credentialsId: 'nexus-auth', 
+                        groupId: 'com.example', 
+                        nexusUrl: '203.109.113.163:8081', 
+                        nexusVersion: 'nexus3', 
+                        protocol: 'http', 
+                        repository: 'maven-demo-releases', 
+                        version: '1.0.0'
+                    )
                 }
             }
         }
