@@ -5,7 +5,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 script {
-                    git branch: 'main', url: 'https://github.com/chiragdcmarix/demo-counter-app.git'
+                    git branch: 'main', url: 'https://github.com/chiragdcmarix/demo-counter-app.gitt'
                 }
             }
         }
